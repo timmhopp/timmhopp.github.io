@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Scale Traffic Flow Prediction - Timm Hopp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .navbar {
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .back-link {
+            padding: 30px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #999;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 30px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #999;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .project-header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .project-hero-image {
+            width: 100%;
+            height: 400px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .project-links {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+        }
+
+        .project-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-link:hover {
+            color: #999;
+        }
+
+        .image-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f9f9f9;
+            font-weight: 400;
+            color: #333;
+        }
+
+        td {
+            color: #666;
+            font-weight: 300;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        footer {
+            border-top: 1px solid #eee;
+            padding: 40px 0;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .project-hero-image {
+                height: 250px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">← Back to Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#cv" class="nav-link">CV</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="project-header">
+            <h1>Multi-Scale Spatiotemporal Origin-Destination Traffic Flow Prediction</h1>
+            <div class="project-meta">
+                <span>Master's Thesis</span>
+                <span>2024</span>
+                <span>Deep Learning</span>
+            </div>
+        </div>
+
+        <section>
+            <h2>Background</h2>
+            <p>This project is part of my Master's Thesis on predicting long-term traffic patterns. The model combines a Graph Attention Network (GAT) with a two-branch temporal learning structure, splitting short-term and long-term predictions between multiple Graph Recurrent Units (GRUs) and a Long Short-Term Memory (LSTM) network. Temporal Attention modules are used for refined learning of patterns over time.</p>
+            
+            <p>The model takes windows of data up to time <em>t</em> and predicts a single Origin-Destination (OD) matrix at horizon length <em>h</em>. This is a novel approach, as predictions of similarly long time spans are absent from existing literature.</p>
+            
+            <p>Spatio-temporal patterns are learned on a graph structure where traffic is modeled as weighted edges between fixed graph vertices derived from the geographic structure of the area of interest. The graph is processed as <em>G = (V, E<sub>t</sub>, A)</em>, where <em>V</em> are the vertices, <em>E<sub>t</sub></em> the amount of traffic, and <em>A</em> the adjacency matrix.</p>
+        </section>
+
+        <section>
+            <h2>Model Structure</h2>
+            <p>The model consists of three main components:</p>
+            <ul>
+                <li><strong>Graph Attention Network (GAT)</strong> for spatial attention from graph, adjacency, and distance</li>
+                <li><strong>Long-Term Branch</strong> featuring an LSTM and a Temporal Attention Mechanism</li>
+                <li><strong>Short-Term Branch</strong> with multiple GRUs and Temporal Attention Mechanisms</li>
+            </ul>
+
+            <p>OD matrices are loaded from the tensor, each representing network traffic within fixed 10-minute timeframes. These are subsequently processed by the GAT and spatial attention is encoded. Temporal modules learn traffic over time from outputs of the GAT. GRUs receive subsets of the data processed by the LSTM, each training on repeating daily segments.</p>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/model_structure.drawio.png" alt="Model Structure">
+            </div>
+
+            <h3>Temporal Learning</h3>
+            <p>The Long-Term Branch receives the spatial encodings from the GAT and aggregates them, transforming them into a single vector for each time step through mean pooling. An LSTM is trained to learn daily patterns by processing a full day's data. The temporal embeddings are then forwarded for temporal attention learning.</p>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/long_term_module.png" alt="Long-Term Module" style="max-width: 600px;">
+            </div>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/short_term_module.png" alt="Short-Term Module" style="max-width: 600px;">
+            </div>
+
+            <h3>Decoder</h3>
+            <p>The decoder fuses the long-term and short-term context vectors through linear projections and non-linear transformations. A 3×3 convolution kernel is applied, and Softplus activation ensures non-negative values in the final OD matrix prediction.</p>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/decoder.png" alt="Decoder" style="max-width: 600px;">
+            </div>
+
+            <h3>Loss Function</h3>
+            <p>The model uses the Negative Binomial negative log-likelihood (NB-NLL) loss function. OD traffic consists of non-negative integer counts and shows strong overdispersion, making the Negative Binomial distribution appropriate. The dispersion parameter is adapted to progressively reduce variance and remove noise.</p>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/distribution.png" alt="Distribution">
+            </div>
+        </section>
+
+        <section>
+            <h2>Experiments</h2>
+            <p>The model was tested on <a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page" target="_blank">TLC Taxi Data for NYC</a> for the year 2024. Data was filtered to contain only trips within the Borough of Manhattan. To further decrease complexity, zones were grouped based on total trip counts, adjacency, and distance between zones.</p>
+
+            <div class="image-grid">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/manhattan.png" alt="Manhattan Zones">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/supernodes.png" alt="Supernodes">
+            </div>
+
+            <p>Adjacency and distance matrices were first calculated based on the provided Shapefile, then refactored using the clusters. Trips in OD matrices were summed per time step. The result was a 10×10 tensor.</p>
+        </section>
+
+        <section>
+            <h2>Results</h2>
+            <p>The model showed excellent performance across all prediction horizons with minimal degradation over time, demonstrating that it successfully learned spatiotemporal patterns and generalized them effectively.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Horizon (10‑min)</th>
+                        <th>MAE</th>
+                        <th>MSE</th>
+                        <th>RMSE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Single-Step Model (raw)</td>
+                        <td>1</td>
+                        <td>2.6880</td>
+                        <td>24.0513</td>
+                        <td>4.9042</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multi-Step Model</strong></td>
+                        <td>36</td>
+                        <td><strong>2.5266</strong></td>
+                        <td><strong>20.6940</strong></td>
+                        <td><strong>4.5491</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>144</td>
+                        <td><strong>2.5499</strong></td>
+                        <td><strong>18.5864</strong></td>
+                        <td><strong>4.3112</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>432</td>
+                        <td><strong>2.7268</strong></td>
+                        <td><strong>22.6039</strong></td>
+                        <td><strong>4.7544</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1008</td>
+                        <td><strong>2.7651</strong></td>
+                        <td><strong>22.6454</strong></td>
+                        <td><strong>4.7587</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Traffic volumes were predicted at high accuracy, even across several days distance:</p>
+
+            <div class="image-container">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/vol_1008.png" alt="Volume Predictions">
+            </div>
+
+            <p>Cosine similarities remained very high across all horizons, showing consistency in predicting flows:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Horizon (10-min)</th>
+                        <th>Avg Cosine per Matrix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>36</td>
+                        <td>0.901426</td>
+                    </tr>
+                    <tr>
+                        <td>144</td>
+                        <td>0.894814</td>
+                    </tr>
+                    <tr>
+                        <td>432</td>
+                        <td>0.882047</td>
+                    </tr>
+                    <tr>
+                        <td>1008</td>
+                        <td>0.879097</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Key Findings</h2>
+            <ul>
+                <li>The multi-step model outperformed the single-step baseline across all metrics</li>
+                <li>Minimal error degradation even at very long horizons (1008 time steps = 7 days)</li>
+                <li>High cosine similarity (>0.87) maintained across all prediction horizons</li>
+                <li>Successfully captured both spatial relationships and temporal patterns at multiple scales</li>
+                <li>Demonstrated robust generalization to unseen traffic patterns</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">PyTorch</span>
+                <span class="tech-tag">GeoPandas</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Matplotlib</span>
+            </div>
+        </section>
+
+        <div class="project-links">
+            <a href="https://github.com/timmhopp/LongTerm_Forecasting" target="_blank" class="project-link">
+                <span>→</span>
+                <span>View on GitHub</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Timm Hopp</p>
+    </footer>
+</body>
+</html>

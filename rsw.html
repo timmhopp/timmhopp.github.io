@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Path StoryMap - Timm Hopp</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
+        .navbar { border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
+        .back-link { padding: 30px 0; color: #333; text-decoration: none; font-size: 14px; letter-spacing: 0.5px; transition: color 0.3s; }
+        .back-link:hover { color: #999; }
+        .nav-menu { display: flex; list-style: none; gap: 40px; }
+        .nav-link { padding: 30px 0; color: #333; text-decoration: none; font-size: 14px; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-link:hover { color: #999; }
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+        .project-header { margin-bottom: 60px; }
+        h1 { font-size: 2.5em; font-weight: 300; margin-bottom: 20px; letter-spacing: -1px; }
+        .project-meta { display: flex; gap: 30px; margin-bottom: 40px; color: #999; font-size: 0.95em; }
+        .project-hero-image { width: 100%; height: 400px; background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 40px; background-color: #f5f5f5; }
+        h2 { font-size: 1.8em; font-weight: 300; margin-top: 60px; margin-bottom: 20px; color: #333; }
+        h3 { font-size: 1.3em; font-weight: 400; margin-top: 40px; margin-bottom: 15px; color: #333; }
+        p { color: #666; font-weight: 300; line-height: 1.8; margin-bottom: 20px; font-size: 1.05em; }
+        ul, ol { color: #666; font-weight: 300; line-height: 1.8; margin-left: 25px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        .image-container { margin: 40px 0; text-align: center; }
+        .image-container img { max-width: 100%; height: auto; border-radius: 4px; }
+        .project-links { margin-top: 40px; padding-top: 40px; border-top: 1px solid #eee; display: flex; gap: 20px; }
+        .project-link { color: #333; text-decoration: none; font-size: 1em; transition: color 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .project-link:hover { color: #999; }
+        footer { border-top: 1px solid #eee; padding: 40px 0; text-align: center; color: #999; font-size: 0.9em; font-weight: 300; }
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 2em; }
+            .project-hero-image { height: 250px; }
+            .nav-container { padding: 0 20px; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">← Back to Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#cv" class="nav-link">CV</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="project-header">
+            <h1>Historical Path StoryMap</h1>
+            <div class="project-meta">
+                <span>StoryMap</span>
+                <span>2025</span>
+                <span>ArcGIS Online</span>
+            </div>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="project-hero-image" style="background-image: url('images/rsw.png');"></div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>
+                This project presents an ArcGIS StoryMap documenting a walking route long historical places in Austria. 
+                The goal was to create an accessible, map‑based narrative that guides viewers along the path 
+                and highlights locations of cultural significance in relationship to historical executions. All geographic locations were recorded 
+                directly on-site, and explanations for each stop were provided by local community historians.
+            </p>
+            <p>
+                The StoryMap transforms a traditional walking route into an interactive digital experience, 
+                combining field data, local knowledge, and modern GIS tools.
+            </p>
+        </section>
+
+        <section>
+            <h2>Data Collection</h2>
+            <p>
+                All locations along the route were collected on-site using GPS. This ensured accurate 
+                positioning and allowed the StoryMap to reflect the real structure of the path. 
+                During the walk, photographs and notes were taken to document:
+            </p>
+
+            <ul>
+                <li>Key landmarks and viewpoints</li>
+                <li>Important stops along the route</li>
+                <li>Local explanations provided on-site</li>
+            </ul>
+
+            <p>
+                The descriptions for each location were provided by community historians familiar with the 
+                route and its cultural background. No formal historical research was conducted, the StoryMap 
+                reflects local knowledge shared directly along the route.
+            </p>
+        </section>
+
+        <section>
+            <h2>Mapping in ArcGIS Online</h2>
+            <p>
+                After collecting the GPS points, all data was uploaded to ArcGIS Online. The mapping workflow included:
+            </p>
+
+            <ul>
+                <li>Creating a hosted feature layer for the route</li>
+                <li>Adding point features for each stop</li>
+                <li>Designing symbology for clarity and consistency</li>
+                <li>Organizing attributes for use in the StoryMap</li>
+                <li>Selecting a basemap that highlights terrain and context</li>
+            </ul>
+
+            <p>
+                The resulting map layers were optimized for readability and smooth integration into the StoryMap.
+            </p>
+        </section>
+
+        <section>
+            <h2>Building the StoryMap</h2>
+            <p>
+                The StoryMap was created using ArcGIS StoryMaps, focusing on a clean, scroll‑based narrative. 
+                The structure follows the route from start to finish, allowing viewers to explore each stop.
+            </p>
+
+            <h3>Key design elements</h3>
+            <ul>
+                <li>Sidecar blocks pairing text with interactive maps</li>
+                <li>Short, focused descriptions for each stop & longer ones in a seperate section</li>
+                <li>Embedded web maps for exploration</li>
+                <li>Consistent visual style and typography</li>
+                <li>A timeline</li>
+            </ul>
+
+            <p>
+                The result is a digital walk-through that mirrors the experience of moving along the path.
+            </p>
+        </section>
+
+        <section>
+            <h2>Outcome</h2>
+            <p>
+                The final StoryMap provides an engaging and accessible way to explore the historical route. 
+                It preserves local knowledge, supports cultural tourism, and demonstrates how field data 
+                and community input can be combined in a modern GIS workflow.
+            </p>
+
+            <p>
+                It serves as both a digital guide and a narrative companion to the physical path.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">ArcGIS StoryMaps</span>
+                <span class="tech-tag">ArcGIS Online</span>
+                <span class="tech-tag">GPS Field Collection</span>
+                <span class="tech-tag">Web Mapping</span>
+            </div>
+        </section>
+
+        <div class="project-links">
+            <a href="https://storymaps.arcgis.com/stories/14661b2402094d428193de612cdb545f" target="_blank" class="project-link">
+                <span>→</span>
+                <span>Open StoryMap</span>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 Timm Hopp</p>
+    </footer>
+</body>
+</html>

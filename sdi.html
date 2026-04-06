@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapping Students’ Commutes to School - Timm Hopp</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
+        .navbar { border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 1000; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
+        .back-link { padding: 30px 0; color: #333; text-decoration: none; font-size: 14px; letter-spacing: 0.5px; transition: color 0.3s; }
+        .back-link:hover { color: #999; }
+        .nav-menu { display: flex; list-style: none; gap: 40px; }
+        .nav-link { padding: 30px 0; color: #333; text-decoration: none; font-size: 14px; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-link:hover { color: #999; }
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+        .project-header { margin-bottom: 60px; }
+        h1 { font-size: 2.5em; font-weight: 300; margin-bottom: 20px; letter-spacing: -1px; }
+        .project-meta { display: flex; gap: 30px; margin-bottom: 40px; color: #999; font-size: 0.95em; }
+        .project-hero-image { width: 100%; height: 400px; background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 40px; background-color: #f5f5f5; }
+        h2 { font-size: 1.8em; font-weight: 300; margin-top: 60px; margin-bottom: 20px; color: #333; }
+        h3 { font-size: 1.3em; font-weight: 400; margin-top: 40px; margin-bottom: 15px; color: #333; }
+        p { color: #666; font-weight: 300; line-height: 1.8; margin-bottom: 20px; font-size: 1.05em; }
+        ul, ol { color: #666; font-weight: 300; line-height: 1.8; margin-left: 25px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .tech-tag { background: #f5f5f5; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #666; }
+        .project-links { margin-top: 40px; padding-top: 40px; border-top: 1px solid #eee; display: flex; gap: 20px; }
+        .project-link { color: #333; text-decoration: none; font-size: 1em; transition: color 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .project-link:hover { color: #999; }
+        .image-container { margin: 40px 0; text-align: center; }
+        .image-container img { max-width: 100%; height: auto; border-radius: 4px; }
+        footer { border-top: 1px solid #eee; padding: 40px 0; text-align: center; color: #999; font-size: 0.9em; font-weight: 300; }
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 2em; }
+            .project-hero-image { height: 250px; }
+            .nav-container { padding: 0 20px; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">← Back to Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#cv" class="nav-link">CV</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="project-header">
+            <h1>Mapping Students’ Commutes to School</h1>
+            <div class="project-meta">
+                <span>SDI Project</span>
+                <span>2025</span>
+                <span>Spatial Data Infrastructure</span>
+            </div>
+        </div>
+
+        <div class="project-hero-image" style="background-image: url('images/sdi_res.png');"></div>
+
+        <!-- OVERVIEW -->
+        <section>
+            <h2>Overview</h2>
+            <p>
+                This project visualizes how students in Austria commute to school, focusing on accessibility,
+                travel time, and district-level disparities. Using openly available data and SDI principles,
+                we built a complete workflow: data collection, preprocessing, database integration,
+                web service publication, and dashboard visualization.
+            </p>
+            <p>
+                The goal was to support education planners by highlighting where long commutes occur,
+                which school types are underserved, and how commuting patterns differ across districts.
+            </p>
+        </section>
+
+        <!-- BACKGROUND -->
+        <section>
+            <h2>Background</h2>
+            <p>
+                School types in Austria are unevenly distributed, forcing many students to travel long distances.
+                Long commutes reduce free time, increase stress, and contribute to environmental impact.
+                Despite this, visualizations of school commutes are rare, especially for specialized schools.
+            </p>
+            <p>
+                By mapping commute distances, times, and origin–destination flows, the project provides
+                insights into structural shortcomings and supports more equitable educational planning.
+            </p>
+        </section>
+
+        <!-- PURPOSE -->
+        <section>
+            <h2>Purpose</h2>
+            <p>
+                The dashboard presents:
+            </p>
+            <ul>
+                <li>Choropleth maps of commuter counts per district</li>
+                <li>Origin–destination lines between districts</li>
+                <li>Filters for school type, district, and year</li>
+                <li>Pop‑ups with district-level statistics</li>
+            </ul>
+            <p>
+                All data is stored and served through standardized, open geospatial services.
+            </p>
+        </section>
+
+        <!-- WORKFLOW -->
+        <section>
+            <h2>Project Workflow</h2>
+            <p>
+                The project followed a complete SDI workflow, starting from data acquisition and preprocessing,
+                moving through database integration and service publication, and ending with a fully interactive dashboard.
+            </p>
+
+            <ol>
+                <li><strong>Data Collection:</strong> Gathering vector and statistical datasets from Statistik Austria and data.gv.at.</li>
+                <li><strong>Preprocessing:</strong> Cleaning, harmonizing, and transforming data using Python, Pandas, NumPy, and GDAL.</li>
+                <li><strong>Database Integration:</strong> Uploading spatial and tabular data into a PostGIS-enabled PostgreSQL database.</li>
+                <li><strong>Web Service Publication:</strong> Exposing vector layers as WFS and statistical tables as REST services.</li>
+                <li><strong>Dashboard Implementation:</strong> Building an ArcGIS Insights dashboard with real-time filtering and OD visualization.</li>
+            </ol>
+
+            <div class="image-container">
+                <img src="images/sdi_wf.png" alt="Project workflow diagram">
+            </div>
+        </section>
+
+        <!-- DATABASE -->
+        <section>
+            <h2>Database Structure</h2>
+
+            <p>
+                The database was implemented using PostgreSQL/PostGIS, designed around a single district identifier
+                (<code>bezirk_id</code>) that links all spatial and statistical datasets. This ensured seamless joins
+                between layers and efficient querying from the dashboard.
+            </p>
+
+            <h3>Spatial Tables</h3>
+            <ul>
+                <li><strong>districts</strong> — Polygon boundaries of Austria’s political districts.</li>
+                <li><strong>district_centroids</strong> — Precomputed centroid points for OD routing.</li>
+                <li><strong>school_locations</strong> — Point dataset of Austrian schools, categorized by type.</li>
+            </ul>
+
+            <h3>Statistical Tables</h3>
+            <ul>
+                <li><strong>commute_time</strong> — Average commute time per district and school type.</li>
+                <li><strong>commute_distance</strong> — Average commute distance per district and school type.</li>
+                <li><strong>commute_characteristics</strong> — Detailed breakdown of commute modes and durations.</li>
+                <li><strong>school_attendance</strong> — Number of students per district and school type.</li>
+                <li><strong>od_matrix</strong> — Origin–destination flows between districts.</li>
+            </ul>
+
+            <h3>Migration & Transformation</h3>
+            <p>
+                Data was initially stored in Supabase but migrated to an ArcGIS-enabled PostGIS instance using GDAL:
+            </p>
+
+<pre><code>ogr2ogr -f "PostgreSQL" PG:"host=... dbname=... user=..." \
+    input.geojson -nln districts -nlt MULTIPOLYGON
+</code></pre>
+
+            <p>Indexes were added for performance:</p>
+
+<pre><code>CREATE INDEX idx_districts_geom ON districts USING GIST (geom);
+CREATE INDEX idx_od_origin ON od_matrix (bezirk_id);
+CREATE INDEX idx_od_dest ON od_matrix (bezirk_id_dest);
+</code></pre>
+
+            <div class="image-container">
+                <img src="images/sdi_dbs.png" alt="Database schema diagram">
+            </div>
+        </section>
+
+        <!-- WEB SERVICES -->
+        <section>
+            <h2>Web Services</h2>
+            <p>
+                All spatial layers were published as OGC-compliant Web Feature Services (WFS) through the university’s
+                GeoServer instance. Statistical tables were exposed as REST services.
+            </p>
+
+            <ul>
+                <li><strong>districts_wfs</strong> — polygon boundaries</li>
+                <li><strong>district_centroids_wfs</strong> — centroid points</li>
+                <li><strong>school_locations_wfs</strong> — school locations</li>
+                <li><strong>commute tables</strong> — REST-accessible statistical data</li>
+            </ul>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section>
+            <h2>Dashboard Workflow</h2>
+
+            <p>
+                The dashboard was built in ArcGIS Insights, combining spatial and non-spatial data with interactive
+                filtering and real-time aggregation.
+            </p>
+
+            <h3>1. Choropleth Mapping</h3>
+            <ol>
+                <li>Load <code>districts_wfs</code>.</li>
+                <li>Join with statistical tables via <code>bezirk_id</code>.</li>
+                <li>Apply filters for school type and year.</li>
+                <li>Style polygons using quantile or natural breaks.</li>
+                <li>Enable pop-ups with district summaries.</li>
+            </ol>
+
+            <h3>2. Origin–Destination Flow Mapping</h3>
+            <ol>
+                <li>Load <code>district_centroids_wfs</code>.</li>
+                <li>Join OD matrix to centroid coordinates.</li>
+                <li>Generate dynamic line geometries.</li>
+                <li>Filter by flow intensity.</li>
+                <li>Enable pop-ups showing commuter counts.</li>
+            </ol>
+
+            <h3>3. Analytical Panels</h3>
+            <ul>
+                <li>Commute time and distance summaries</li>
+                <li>School attendance statistics</li>
+                <li>Commute characteristics by education level</li>
+                <li>Contextual explanations for non-technical users</li>
+            </ul>
+
+            <div class="image-container">
+                <img src="images/sdi_bewf.png" alt="Dashboard workflow diagram">
+            </div>
+        </section>
+
+        <!-- TECHNOLOGIES -->
+        <section>
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">GDAL</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">PostGIS</span>
+                <span class="tech-tag">GeoServer</span>
+                <span class="tech-tag">ArcGIS Pro</span>
+                <span class="tech-tag">ArcGIS Insights</span>
+            </div>
+        </section>
+        
+
+    </div>
+
+    <footer>
+        <p>© 2025 Timm Hopp</p>
+    </footer>
+</body>
+</html>

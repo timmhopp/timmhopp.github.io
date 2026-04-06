@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulating Autonomous and Human-Driven Vehicles - Timm Hopp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .navbar {
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .back-link {
+            padding: 30px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #999;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 30px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #999;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .project-header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .project-hero-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            font-weight: 400;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        ul, ol {
+            color: #666;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .project-links {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-link:hover {
+            color: #999;
+        }
+
+        .image-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f9f9f9;
+            font-weight: 400;
+            color: #333;
+        }
+
+        td {
+            color: #666;
+            font-weight: 300;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        footer {
+            border-top: 1px solid #eee;
+            padding: 40px 0;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .project-hero-image {
+                height: 250px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="back-link">← Back to Portfolio</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#cv" class="nav-link">CV</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="project-header">
+            <h1>Simulating Autonomous and Human-Driven Vehicles</h1>
+            <div class="project-meta">
+                <span>Course Project</span>
+                <span>2025/26</span>
+                <span>Spatial Simulation</span>
+            </div>
+        </div>
+
+        <div class="project-hero-image" style="background-image: url('images/trafsim.png');"></div>
+
+        <section>
+            <h2>Overview</h2>
+            <p>
+                This project explores how autonomous vehicles (AVs) and human-driven cars behave in a shared road network
+                and whether AVs can reduce traffic congestion. Using the GAMA simulation platform, I implemented a
+                simplified urban road network with traffic lights and different driver behaviors to compare three
+                scenarios: only human drivers, only autonomous vehicles, and mixed traffic.
+            </p>
+            <p>
+                The simulation tracks average travel time, number of completed trips, and vehicle speeds over time to
+                assess how coordination, communication, and driving style influence congestion and throughput.
+            </p>
+        </section>
+
+        <section>
+            <h2>Motivation</h2>
+            <p>
+                Traffic congestion causes massive economic and environmental costs. In the EU, traffic jams are estimated
+                to cost hundreds of billions of euros per year, while cities like Salzburg lose significant time to
+                congestion and stop-and-go traffic. Beyond time loss, exhaust fumes contribute to climate change and
+                poor air quality.
+            </p>
+            <p>
+                The project is framed within the context of the UN Sustainable Development Goals, especially
+                <em>Sustainable Cities and Communities (SDG 11)</em> and <em>Climate Action (SDG 13)</em>, as well as the
+                EU’s “Sustainable and Smart Mobility Strategy”. It asks whether smarter mobility—particularly autonomous
+                vehicles—can be part of a realistic solution.
+            </p>
+        </section>
+
+        <section>
+            <h2>Research question</h2>
+            <p>
+                The central questions of the project are:
+            </p>
+            <ul>
+                <li>Can the use of autonomous vehicles reduce congestion compared to human-driven traffic?</li>
+                <li>Can this be effectively modeled in GAMA using a simplified road network?</li>
+                <li>How do average travel time, throughput, and speed differ between traffic compositions?</li>
+            </ul>
+            <p>
+                An autonomous vehicle is defined here as a vehicle that communicates with other AVs and traffic lights to
+                optimize speed and routing, minimizing travel time and avoiding congestion.
+            </p>
+        </section>
+
+        <section>
+            <h2>Scenarios</h2>
+            <p>
+                All scenarios use the same road network, traffic light logic, and evaluation metrics. Only the driver
+                type composition changes:
+            </p>
+            <ol>
+                <li><strong>Only Human Drivers:</strong> All vehicles follow human-like, noisy behavior.</li>
+                <li><strong>Only Autonomous Vehicles:</strong> All vehicles are AVs with coordinated behavior.</li>
+                <li><strong>Mixed Traffic:</strong> Half human-driven, half autonomous vehicles.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Road network and agent interactions</h2>
+            <p>
+                The initial idea was to derive the street network from OpenStreetMap, but this proved too complex for the
+                scope of the project. Instead, I implemented a simplified, yet expressive network built from basic
+                geometries:
+            </p>
+            <ul>
+                <li><strong>Two-lane segments:</strong> Roads with two lanes per direction.</li>
+                <li><strong>Single-lane segments:</strong> Roads with one lane per direction.</li>
+                <li><strong>Start and end nodes:</strong> Entry and exit points for vehicles.</li>
+                <li><strong>Traffic lights:</strong> Control intersections and communicate with AVs.</li>
+            </ul>
+            <p>
+                Agents interact through:
+            </p>
+            <ul>
+                <li><strong>Cars ↔ Lanes:</strong> Lanes assign positions and directions to vehicles.</li>
+                <li><strong>Cars ↔ Traffic lights:</strong> Human drivers react to visible signals; AVs also use
+                    communicated timing.</li>
+                <li><strong>AV ↔ AV:</strong> Autonomous vehicles share position and speed information (V2V) to
+                    coordinate.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Driving behaviors</h2>
+            <h3>Human drivers vs. autonomous vehicles</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Human Drivers</th>
+                        <th>Autonomous Vehicles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Variable (±40%), random braking</td>
+                        <td>Consistent, smooth speeds</td>
+                    </tr>
+                    <tr>
+                        <td>Distraction</td>
+                        <td>2–8% chance each step</td>
+                        <td>Never distracted</td>
+                    </tr>
+                    <tr>
+                        <td>Tailgating response</td>
+                        <td>Brake checks, blocking, “rage” behavior</td>
+                        <td>Yielding, defensive mode</td>
+                    </tr>
+                    <tr>
+                        <td>Signal behavior</td>
+                        <td>May run reds, accelerate on yellow</td>
+                        <td>Signal-aware timing, never runs red</td>
+                    </tr>
+                    <tr>
+                        <td>Communication</td>
+                        <td>Honking only (aggressive)</td>
+                        <td>V2V data sharing</td>
+                    </tr>
+                    <tr>
+                        <td>Routing</td>
+                        <td>Fixed route</td>
+                        <td>Smart rerouting around congestion</td>
+                    </tr>
+                    <tr>
+                        <td>Coordination</td>
+                        <td>None (competitive)</td>
+                        <td>Platooning, collective knowledge</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                These behavioral differences are encoded in GAMA as separate species with distinct decision rules,
+                perception ranges, and reactions to nearby vehicles and signals.
+            </p>
+        </section>
+
+        <section>
+            <h2>Results</h2>
+            <h3>Human-driven only</h3>
+            <p>
+                In a scenario with 50 human-driven cars over 5000 simulation steps:
+            </p>
+            <ul>
+                <li>185 trips were completed.</li>
+                <li>Average of ~85 steps per trip.</li>
+                <li>Average speed around ~1.5 units/step.</li>
+                <li>Speeds degrade over time and completed trips drop in later timesteps.</li>
+            </ul>
+
+            <h3>Autonomous only</h3>
+            <p>
+                In a scenario with 50 autonomous vehicles over 5000 steps:
+            </p>
+            <ul>
+                <li>319 trips were completed.</li>
+                <li>Average of ~81 steps per trip.</li>
+                <li>Average speed around ~3 units/step.</li>
+                <li>Speeds and trip completions remain stable due to controlled maximum speeds and coordination.</li>
+            </ul>
+
+            <h3>Mixed traffic</h3>
+            <p>
+                With 25 human-driven and 25 autonomous vehicles:
+            </p>
+            <ul>
+                <li>AVs are faster on average and complete more trips.</li>
+                <li>AVs take less time per route and maintain smoother traffic flow.</li>
+                <li>Human-driven cars show higher speed peaks but more instability and congestion.</li>
+            </ul>
+
+            <p>
+                Overall, the simulations indicate that autonomous vehicles can help reduce congestion and improve traffic
+                conditions, especially when they can coordinate and communicate with each other and with infrastructure.
+            </p>
+        </section>
+
+        <section>
+            <h2>Implementation details and challenges</h2>
+            <p>
+                The model was implemented in GAMA, starting from a simple geometric network after attempts to directly
+                use OSM data proved too complex. I iteratively refined:
+            </p>
+            <ul>
+                <li><strong>Traffic light logic:</strong> Ensuring correct stopping behavior and realistic timing.</li>
+                <li><strong>Perception zones:</strong> Action areas around cars to detect others and react.</li>
+                <li><strong>Performance:</strong> Balancing agent complexity with simulation speed.</li>
+                <li><strong>Documentation:</strong> Recording assumptions, behaviors, and limitations.</li>
+            </ul>
+            <p>
+                Generative AI (GitHub Copilot / Claude) was used selectively to support coding, but all core modeling
+                decisions and logic were designed and validated manually.
+            </p>
+        </section>
+
+        <section>
+            <h2>Technologies used</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">GAMA Platform</span>
+                <span class="tech-tag">Agent-Based Modeling</span>
+                <span class="tech-tag">Spatial Simulation</span>
+            </div>
+        </section>
+
+        <div class="project-links">
+            <a href="https://github.com/timmhopp/TrafficSimulation" target="_blank" class="project-link">
+                <span>→</span>
+                <span>View on GitHub</span>
+            </a>
+            <a href="https://github.com/timmhopp/TrafficSimulation/wiki" target="_blank" class="project-link">
+                <span>→</span>
+                <span>Project Wiki &amp; Documentation</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Timm Hopp</p>
+    </footer>
+</body>
+</html>
