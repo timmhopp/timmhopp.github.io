@@ -378,50 +378,7 @@
                 gap: 5px;
             }
         }
-        .hero-split {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 80px;
-    margin-bottom: 120px;
-}
-
-.hero-left {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-.hero-right {
-    max-width: 400px;
-}
-
-.hero-right ul {
-    list-style: none;
-    margin-top: 10px;
-}
-
-.hero-right li {
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.hero-right li::before {
-    content: "— ";
-    color: #bbb;
-}
-
-        @media (max-width: 768px) {
-    .hero-split {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .hero-left {
-        flex-direction: column;
-        text-align: center;
-    }
-}
+        
     </style>
 </head>
 <body>
@@ -443,27 +400,7 @@
             </ul>
         </div>
     </nav>
-    <div class="hero-split">
-    
-    <div class="hero-left">
-        <div class="profile-image"></div>
-        <div class="hero-text">
-            <h1>Timm Hopp</h1>
-            <p>M.Sc. Applied Geoinformatics</p>
-        </div>
-    </div>
-
-    <div class="hero-right">
-        <h2>Research & Professional Interests</h2>
-        <ul>
-            <li>Spatiotemporal Data Analysis</li>
-            <li>Deep Learning & Graph Neural Networks</li>
-            <li>Urban Traffic Modeling & Prediction</li>
-            <li>Geospatial Machine Learning</li>
-            <li>Computer Vision & Remote Sensing</li>
-        </ul>
-    </div>
-
+    <div id="about" class="page active"> <div class="container"> <div class="hero"> <div class="profile-image"></div> <div class="hero-text"> <h1>Timm Hopp</h1> <p>M.Sc. Applied Geoinformatics</p> </div> </div> <section class="about"> <h2>Research & Professional Interests</h2> <ul> <li>Spatiotemporal Data Analysis</li> <li>Deep Learning & Graph Neural Networks</li> <li>Urban Traffic Modeling & Prediction</li> <li>Geospatial Machine Learning</li> <li>Computer Vision & Remote Sensing</li> </ul> </section> <section> <h2>Selected Projects</h2> <div class="carousel-container"> <div class="carousel-wrapper"> <div class="project-card" onclick="window.location.href='projects/traffic-prediction.html'"> <div class="project-image" style="background-image: url('images/model.png');"></div> <h3>Multi-Scale Spatiotemporal Traffic Flow Prediction</h3> <p>Traffic flow prediction on multiple timespans using graph learning.</p> </div> <div class="project-card" onclick="window.location.href='projects/agent-traffic.html'"> <div class="project-image" style="background-image: url('images/sim.png');"></div> <h3>Agent-based Traffic Modeling</h3> <p>Simulation for modeling classical and autonomous traffic behaviors.</p> </div> <div class="project-card" onclick="window.location.href='projects/cave-volume.html'"> <div class="project-image" style="background-image: url('images/cave.png');"></div> <h3>Cave Volume Estimation</h3> <p>Accurate estimation of cave volumes from survey data.</p> </div> <div class="project-card" onclick="window.location.href='projects/school-commutes.html'"> <div class="project-image" style="background-image: url('images/sdi_res.png');"></div> <h3>Mapping Students' Commutes to School</h3> <p>SDI project visualizing school commute patterns in Austria.</p> </div> <div class="project-card" onclick="window.location.href='projects/historical-path.html'"> <div class="project-image" style="background-image: url('images/rsw.png');"></div> <h3>Historical Path StoryMap</h3> <p>Interactive narrative documenting a historical walking route.</p> </div> </div> </div> </section> </div>
 </div>
         <footer>
             <p>© 2026 Timm Hopp</p>
