@@ -303,6 +303,40 @@
         
         </section>
 
+         <section>
+            <h2>Abstract</h2>
+            <p>Accurate forecasting of urban traffic is essential for mobility management, urban planning,
+and intelligent transportation systems but the strong spatial and temporal dependencies and
+complexities make it a diffcult task. This thesis proposes a deep learning method that models
+traffic as a dynamic graph and models short-term patterns and long-term trends simultane-
+ously. The architecture combines a Graph Attention Network with a two-fold temporal
+learning approach. Parallel Gated Recursive Units are used to learn rapid traffic changes on
+a short time frame, while an Long Short-Term Memory Recurrent Neural Network captures
+evolving daily patterns. The model is evaluated on real-world taxi data from 2024 in New
+York City. Data was aggregated as origin-destination matrices and represented as a dynamic
+graph. Experiments are conducted for next-step predictions and long-term forecasting across
+horizons between six hours and seven days. The model achieves consistently accurate predic-
+tions, with single-step MAE between 2.23 and 2.69 and an RMSE of 3.58 to 4.90 and cosine
+similarities of 0.88 to 0.98. Longer forecasts into the future yield similar results with long-
+term MAE of 2.53 to 2.77, RMSE of 4.31 to 4.76, and consistent cosine similarities around
+0.88. A systemic bias towards underprediction is found for short-term forecasts but shown as
+correctable through simple linear regression based on residuals. The results demonstrate that
+the model is capable of successfully forecasting traffic at different scales, preserving spatial
+structures and temporal dependencies.</p>
+        
+        </section>
+        
+        <section>
+            <h2>Research Question</h2>
+            <p>For evaluation, three key aspects are focused on in regards to traffic patterns and volumes prediction:</p>
+                    <ol>
+                      <li><strong>Short-term performance:</strong> How well does the model capture rapid, short-term changes in traffic?</li>
+                      <li><strong>Long-term performance:</strong> How accurately does the model learn and represent trends over longer time spans?</li>
+                      <li><strong>Baseline comparison:</strong> Does the model provide improved predictions compared to statistical baseline methods?</li>
+                    </ol>
+        
+        </section>
+
         <section>
             <h2>Model Structure</h2>
             <p>The model consists of three main components:</p>
