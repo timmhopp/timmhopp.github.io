@@ -110,6 +110,7 @@
                 <li class="nav-item"><a class="nav-link" onclick="showPage('about')">About Me</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="showPage('projects')">Projects</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="showPage('thesis')">Thesis</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="showPage('seminar')">Seminar</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="showPage('cv')">CV</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
             </ul>
@@ -165,6 +166,16 @@
                             <h3>Historical Path StoryMap</h3>
                             <p>Interactive narrative documenting a historical walking route.</p>
                         </div>
+                        <div class="project-card" onclick="showPage('seminar')">
+                            <div class="project-image" style="background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                                <div style="text-align: center; color: white;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">📄</div>
+                                    <div style="font-size: 0.9em; font-weight: 300;">Seminar Paper</div>
+                                </div>
+                            </div>
+                            <h3>GeoAI Foundation Models</h3>
+                            <p>A short seminar paper on GeoAI Foundation Models and upper ontologies.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -202,6 +213,16 @@
                     <div class="project-image" style="background-image: url('images/rsw.png');"></div>
                     <h3>Historical Path StoryMap</h3>
                     <p>ArcGIS StoryMap documenting a walking route through historical locations with GPS-collected data and local narratives.</p>
+                </div>
+                <div class="project-detail" onclick="showPage('seminar')">
+                    <div class="project-image" style="background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; color: white;">
+                            <div style="font-size: 3em; margin-bottom: 10px;">📄</div>
+                            <div style="font-size: 1em; font-weight: 300;">Seminar Paper</div>
+                        </div>
+                    </div>
+                    <h3>GeoAI Foundation Models - Will they have the same fate as upper ontologies in GIScience?</h3>
+                    <p>A short seminar paper on GeoAI Foundation Models and upper ontologies.</p>
                 </div>
             </div>
         </div>
@@ -444,6 +465,32 @@
                     <span>→</span><span>View on GitHub</span>
                 </a>
             </div>
+        </div>
+        <footer><p>© 2026 Timm Hopp</p></footer>
+    </div>
+
+    <!-- SEMINAR -->
+    <div id="seminar" class="page">
+        <div class="thesis-container">
+            <div class="project-header">
+                <h1>GeoAI Foundation Models - Will they have the same fate as upper ontologies in GIScience?</h1>
+                <div class="project-meta">
+                    <span>Seminar Paper</span>
+                </div>
+            </div>
+
+            <section>
+                <p style="font-size: 1.05em; color: #666; font-weight: 300; margin-bottom: 40px;">A short seminar paper on GeoAI Foundation Models and upper ontologies.</p>
+
+                <div style="width: 100%; height: 90vh; border: 1px solid #eee; border-radius: 4px; background: #f5f5f5; margin-bottom: 30px;">
+                    <embed src="./GIScience_SeminarPaper.pdf" type="application/pdf" style="width: 100%; height: 100%; border-radius: 4px;">
+                </div>
+
+                <div style="text-align: center; padding: 40px 20px; background: #f9f9f9; border-radius: 4px;">
+                    <p style="margin-bottom: 20px; color: #666;">If the viewer doesn't load, download the PDF directly:</p>
+                    <a href="./GIScience_SeminarPaper.pdf" download style="display: inline-block; padding: 12px 24px; background: #333; color: #fff; text-decoration: none; border-radius: 4px; transition: background 0.3s; font-size: 1em;">Download PDF</a>
+                </div>
+            </section>
         </div>
         <footer><p>© 2026 Timm Hopp</p></footer>
     </div>
