@@ -217,6 +217,12 @@
                     <span>Master's Thesis</span>
                     <span>2026</span>
                 </div>
+                <div class="project-links" style="margin-top: 20px; padding-top: 0; border-top: none;">
+                    <a href="https://timmhopp.github.io/thesis-pdf.html" target="_blank" class="project-link">
+                        <span>→</span>
+                        <span>View Full Thesis PDF</span>
+                    </a>
+                </div>
             </div>
 
             <section>
@@ -367,14 +373,14 @@
             <p>Spatial attention was assigned to each directed graph edge in the GAT to weigh spatial importance between neighboring nodes. The analysis revealed that attention was not uniformly distributed across the network.</p>
 
             <div class="image-container">
-                <img src="/images/att.png" alt="Global Attention Scores">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/att.png" alt="Global Attention Scores">
             </div>
 
             <p>Attention was largely centered around the diagonal and traffic involving specific zones, particularly zone 237 (node 0). Other edges received significantly lower attention scores close to 0, indicating selective focus on critical network connections.</p>
 
             <div class="image-grid">
-                <img src="/images/spatial_importance_abstract.png" alt="Spatial Attention on Abstract Graph">
-                <img src="/images/spatial_importance_geo.png" alt="Spatial Attention on Manhattan Map">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/spatial_importance_abstract.png" alt="Spatial Attention on Abstract Graph">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/spatial_importance_geo.png" alt="Spatial Attention on Manhattan Map">
             </div>
 
             <p>High attention was given to nodes in zones 142, 236, and 237, while zones 186, 230, and 68 were considered less relevant. Interestingly, no clear correlation was found between spatial attention and graph topology metrics such as degree centrality, betweenness, or traffic volume.</p>
@@ -383,7 +389,7 @@
             <p>Temporal attention was calculated from the outputs of the long-term (LSTM) and short-term (GRU) branches. Each produced normalized attention vectors indicating which time steps were considered important for predictions.</p>
 
             <div class="image-container">
-                <img src="/images/temporal_attention.png" alt="Temporal Attention Distribution">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/temporal_attention.png" alt="Temporal Attention Distribution">
             </div>
 
             <p>The analysis revealed distinct roles for each branch:</p>
@@ -394,7 +400,7 @@
             </ul>
 
             <div class="image-container">
-                <img src="/images/temporal_detail.png" alt="Detailed Temporal Weights">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/temporal_detail.png" alt="Detailed Temporal Weights">
             </div>
 
             <p>Statistical analysis showed strong correlations between temporal attention and traffic characteristics. The LSTM showed strong correlations with traffic variance (ρ = 0.613), autocorrelation (ρ = 0.766), and traffic magnitude (ρ = 0.547), confirming its role in tracking persistent patterns.</p>
@@ -403,7 +409,7 @@
             <p>The model demonstrated an ability to dynamically shift attention based on prediction errors. When errors were low, the model relied mainly on recent information. As predictions grew less accurate, the model shifted focus to earlier time steps, mixing information between long- and short-term branches to reduce uncertainty.</p>
 
             <div class="image-container">
-                <img src="/images/outliers_durations.png" alt="Attention Behavior Conditioned on Error">
+                <img src="https://github.com/timmhopp/LongTerm_Forecasting/raw/main/figures/outliers_durations.png" alt="Attention Behavior Conditioned on Error">
             </div>
 
             <p>This adaptive mechanism allows the model to confirm stable patterns or compensate for unusual traffic conditions by accessing different temporal contexts as needed.</p>
@@ -431,6 +437,9 @@
                 </div>
             </section>
             <div class="project-links">
+                <a href="https://timmhopp.github.io/thesis-pdf.html" target="_blank" class="project-link">
+                    <span>→</span><span>View Full Thesis PDF</span>
+                </a>
                 <a href="https://github.com/timmhopp/LongTerm_Forecasting" target="_blank" class="project-link">
                     <span>→</span><span>View on GitHub</span>
                 </a>
